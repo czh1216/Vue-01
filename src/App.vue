@@ -1,56 +1,65 @@
 <template>
-   <div class="container">
-    <div class="imglist">
-      <h3>图片列表区</h3>
-      <img src="./assets/01.jpg" alt="" @mouseenter="enterFn(1)" @click="clickFn(1, $event)">
-      <img src="./assets/02.jpg" alt="" @mouseenter="enterFn(2)" @click="clickFn(2, $event)">
-      <img src="./assets/03.jpg" alt="" @mouseenter="enterFn(3)" @click="clickFn(3, $event)">
-    </div>
-    <div class="show">
-      <h3>图片预览区</h3>
-      <img :src="imgUrl" alt="" style="width:600px;height:auto;">
-    </div>
    <div>
-   </div>
+  
   </div>
 </template>
 
 <script>
-import img_01 from '@/assets/01.jpg';
-import img_02 from '@/assets/02.jpg';
-import img_03 from '@/assets/03.jpg';
+ let arr = [{a:100}, {a: 20}, {a:-10}]
+    const sum = arr.reduce((pre,curr) => {
+  return pre+curr.a
+},0)
+console.log(sum)
+
+let stess = 'abaaacdadbcadcbadcb'
+let str = stess.split('')
+// console.log(str);
+let add = str.reduce((allNum,curr) => {
+  if(curr in allNum) {
+    allNum[curr]++
+  }else{
+    allNum[curr] =1
+  }
+  return allNum
+},{})
+console.log(add);
+
+
+// http://www.baidu.com?name=zhangsan&age=18&sex=nan#
+// 解析出
+// {name: 'zhangsan',age: 18, sex: 'nan' }
+let url = 'http://www.baidu.com?name=zhangsan&age=18&sex=nan#'
+const process = (url)=>{
+  const index1 = url.indexOf('?'),
+        index2 = url.indexOf('#'),
+        params = url.slice(index1+1,index2 ).split('&')
+  return params.reduce((pre,curr)=>{
+    const [key,value] = curr.split('=')
+    pre[key] = value
+    return pre
+  },{})
+}
+
+console.log(process(url));
+
+
+
+
 export default {
   name: 'App',
   data() {
-    return{
-      imgUrl:img_01
-    }
+   return{
+     
+   }
+    
   },
   methods:{
-    enterFn(val){
-      this.imgUrl={1:img_01, 2:img_02, 3:img_03}[val]
-    },
-    clickFn(num,e){
-      alert(`第${num}张图${e.target.src}`)
-    }
+   
   }
 }
 </script>
 
-<style scoped>
-  .container {
-    display:flex;
-  }
- .imglist { 
-  border: 2px solid red;
- }
-.imglist img {
-  width: 200px;
-  height: auto;
-}
-.show {
-  border: 2px solid red;
-  margin-right: 20px;
-}
+<style >
+ 
 
 </style>
